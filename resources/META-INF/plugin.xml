@@ -1,0 +1,46 @@
+<idea-plugin>
+  <id>com.fhtiger.plugins.humpTransfer</id>
+  <name>HumpTransfer</name>
+  <version>0.0.1</version>
+  <vendor email="guishizuiezhishi@163.com" url="http://github.fhtiger.com">GhostFlyTiger</vendor>
+  <description><![CDATA[
+      Transfer code to `hump` like.<br>
+      <em>Also make reverse</em>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      plugin published the first version 0.0.1 <br>
+      <em>First version</em>
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+    <!-- 自定义分组 -->
+    <group text="HumpTransfer" id="com.fhtiger.plugins.humpTransfer" popup="true" description="Transfer selection to `hump` or `underline`">
+      <!-- 将自定义分组归类到已经有分组 -->
+      <add-to-group group-id="EditMenu" anchor="last"/>
+
+      <add-to-group group-id="BasicEditorPopupMenu" anchor="last"/>
+      <!-- 操作按钮 -->
+      <action id="com.fhtiger.plugins.humptransfer.Code2HumpAction" class="com.fhtiger.plugins.humptransfer.Code2HumpAction" text="Transfer2Hump" description="Transfer selection to `hump` " />
+
+      <action id="com.fhtiger.plugins.humptransfer.Code2UnderLineAction" class="com.fhtiger.plugins.humptransfer.Code2UnderLineAction" text="Transfer2UnderLine" description="Transfer selection to `underline`" />
+
+    </group>
+  </actions>
+
+</idea-plugin>
