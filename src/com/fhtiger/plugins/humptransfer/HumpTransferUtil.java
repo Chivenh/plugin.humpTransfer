@@ -20,7 +20,7 @@ public final class HumpTransferUtil {
 	private static final String Empty = "";
 
 	/**
-	 * @param underLineStr
+	 * @param underLineStr 下划线文本
 	 * @return 驼峰字符串
 	 */
 	public static String trasfer2hump(String underLineStr) {
@@ -29,7 +29,7 @@ public final class HumpTransferUtil {
 
 	/**
 	 * @param underLineStr 下划线字符串
-	 * @param smallCamel   大小写驼峰
+	 * @param smallCamel   首字母大/小写驼峰
 	 * @return 驼峰字符串
 	 */
 	public static String trasfer2hump(String underLineStr, boolean smallCamel) {
@@ -39,7 +39,10 @@ public final class HumpTransferUtil {
 		//匹配正则表达式
 		while (matcher.find()) {
 			String word = matcher.group();
-			//当是true 或则是空的情况
+			if(word.length()==underLineStr.length()){
+				return underLineStr;
+			}
+			//当是true 或者是空的情况
 			if (smallCamel && matcher.start() == 0) {
 				sb.append(Character.toLowerCase(word.charAt(0)));
 			} else {
@@ -58,6 +61,7 @@ public final class HumpTransferUtil {
 
 	/**
 	 * @param humpStr 驼峰字符串
+	 * @param uppercase 分段首字母大小写
 	 * @return 下划线字符串
 	 */
 	public static String transfer2underline(String humpStr,boolean uppercase) {
@@ -68,6 +72,9 @@ public final class HumpTransferUtil {
 		Matcher matcher = HumpRegex.matcher(humpStr);
 		while (matcher.find()) {
 			String word = matcher.group();
+			if(word.length()==humpLength){
+				return humpStr;
+			}
 			char ft= word.charAt(0);
 			sb.append(uppercase? Character.toUpperCase(ft):Character.toLowerCase(ft));
 			sb.append(word.substring(1));
