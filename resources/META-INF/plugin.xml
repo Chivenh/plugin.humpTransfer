@@ -2,7 +2,7 @@
   <id>com.fhtiger.plugins.humpTransfer</id>
   <name>HumpTransfer</name>
   <version>0.0.1</version>
-  <vendor email="guishizuiezhishi@163.com" url="http://github.fhtiger.com">GhostFlyTiger</vendor>
+  <vendor email="guishizuiezhishi@163.com" url="https://github.com/ghostFlyTiger/plugin.humpTransfer">GhostFlyTiger</vendor>
   <description><![CDATA[
       Transfer code to `hump` like.<br>
       <em>Also make reverse</em>
