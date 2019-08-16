@@ -2,7 +2,7 @@
   <id>com.fhtiger.plugins.humpTransfer</id>
   <name>HumpTransfer</name>
   <version>0.0.1</version>
-  <vendor email="guishizuiezhishi@163.com" url="http://github.fhtiger.com">GhostFlyTiger</vendor>
+  <vendor email="guishizuiezhishi@163.com" url="https://github.com/ghostFlyTiger/plugin.humpTransfer">GhostFlyTiger</vendor>
   <description><![CDATA[
       Transfer code to `hump` like.<br>
       <em>Also make reverse</em>
@@ -34,11 +34,22 @@
       <!-- 将自定义分组归类到已经有分组 -->
       <add-to-group group-id="EditMenu" anchor="last"/>
 
-      <add-to-group group-id="BasicEditorPopupMenu" anchor="last"/>
+      <add-to-group group-id="EditorContextBarMenu" anchor="last"/>
       <!-- 操作按钮 -->
-      <action id="com.fhtiger.plugins.humptransfer.Code2HumpAction" class="com.fhtiger.plugins.humptransfer.Code2HumpAction" text="Transfer2Hump" description="Transfer selection to `hump` " />
+      <action id="com.fhtiger.plugins.humptransfer.Code2HumpAction" class="com.fhtiger.plugins.humptransfer.Code2HumpAction" text="Transfer2Hump" description="Transfer selection to `hump` " >
+        <!-- 简写 -->
+        <abbreviation>HP</abbreviation>
+      </action>
+      <action id="com.fhtiger.plugins.humptransfer.Code2HumpWithUpperAction" class="com.fhtiger.plugins.humptransfer.Code2HumpWithUpperAction" text="Transfer2Hump-UpperChar0" description="Transfer selection to `hump` with first char uppercase." >
+        <abbreviation>HPU0</abbreviation>
+      </action>
 
-      <action id="com.fhtiger.plugins.humptransfer.Code2UnderLineAction" class="com.fhtiger.plugins.humptransfer.Code2UnderLineAction" text="Transfer2UnderLine" description="Transfer selection to `underline`" />
+      <action id="com.fhtiger.plugins.humptransfer.Code2UnderLineAction" class="com.fhtiger.plugins.humptransfer.Code2UnderLineAction" text="Transfer2UnderLine" description="Transfer selection to `underline`" >
+        <abbreviation>HUL</abbreviation>
+      </action>
+      <action id="com.fhtiger.plugins.humptransfer.Code2UnderLineWithUppercaseAction" class="com.fhtiger.plugins.humptransfer.Code2UnderLineWithUppercaseAction" text="Transfer2UnderLine-UpperCase" description="Transfer selection to `underline`" >
+        <abbreviation>HULU0</abbreviation>
+      </action>
 
     </group>
   </actions>

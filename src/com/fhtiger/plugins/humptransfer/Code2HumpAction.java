@@ -13,6 +13,6 @@ public final class Code2HumpAction extends Code2HumpOrUnderLine {
 
 	@Override
 	public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-		transfer(anActionEvent,true);
+		transfer2hump(anActionEvent);
 	}
 }
