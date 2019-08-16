@@ -67,7 +67,7 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 			return;
 		}
 
-		final String resultText = toHump?  HumpTransferUtil.trasfer2hump(selectedText,smallCaml): HumpTransferUtil.transfer2underline(selectedText,uppercase);
+		final String resultText = toHump?  HumpTransferUtil.transfer2hump(selectedText,smallCaml): HumpTransferUtil.transfer2underline(selectedText,uppercase);
 
 		// Work off of the primary caret to get the selection info
 		Caret primaryCaret = mEditor.getCaretModel().getPrimaryCaret();

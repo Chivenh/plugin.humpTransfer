@@ -23,8 +23,8 @@ public final class HumpTransferUtil {
 	 * @param underLineStr 下划线文本
 	 * @return 驼峰字符串
 	 */
-	public static String trasfer2hump(String underLineStr) {
-		return trasfer2hump(underLineStr, true);
+	public static String transfer2hump(String underLineStr) {
+		return transfer2hump(underLineStr, true);
 	}
 
 	/**
@@ -32,7 +32,7 @@ public final class HumpTransferUtil {
 	 * @param smallCamel   首字母大/小写驼峰
 	 * @return 驼峰字符串
 	 */
-	public static String trasfer2hump(String underLineStr, boolean smallCamel) {
+	public static String transfer2hump(String underLineStr, boolean smallCamel) {
 		Objects.requireNonNull(underLineStr, "字符串参数不能为空!");
 		StringBuilder sb = new StringBuilder();
 		Matcher matcher = UnderLineRegex.matcher(underLineStr);
