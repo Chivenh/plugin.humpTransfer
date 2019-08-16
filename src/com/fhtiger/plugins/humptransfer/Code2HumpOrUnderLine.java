@@ -1,10 +1,11 @@
 package com.fhtiger.plugins.humptransfer;
 
-import com.intellij.diff.actions.ProxyUndoRedoAction;
+import com.intellij.openapi.actionSystem.ActionGroup;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Document;
@@ -14,7 +15,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.popup.Balloon;
 import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.ui.JBColor;
-import com.intellij.util.ui.components.JBComponent;
 import org.apache.http.util.TextUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -77,14 +77,23 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 		Project theProject = anActionEvent.getProject();
 		// Replace the selection with a fixed string.
 		// Must do this document change in a write action context.
-		WriteCommandAction.runWriteCommandAction(theProject, () ->
+
+		/*基本的修改调用,但是调用后在Undo和Redo中没有注册明确的指令,所以会出现Undo Undefined这种问题*/
+		/*WriteCommandAction.runWriteCommandAction(theProject, () ->
 				document.replaceString(start, end, resultText)
-		);
+		);*/
+
+		/*使用CommandProcessor.getInstance().executeCommand(),在修改操作后注册Undo及Redo,其中HumpTransfer就是undo和redo后显示的操作名*/
+		ApplicationManager.getApplication().runWriteAction(()->{
+			CommandProcessor.getInstance().executeCommand(theProject, ()->{
+				document.replaceString(start, end, resultText);
+			}, "HumpTransfer", ActionGroup.EMPTY_GROUP);
+		});
 
 		// De-select the text range that was just replaced
-//		primaryCaret.removeSelection();
+		//primaryCaret.removeSelection();
 
-		showPopupBalloon(mEditor,selectedText);
+		showPopupBalloon(mEditor,"原:"+selectedText);
 	}
 
 	protected void transfer2hump(@NotNull AnActionEvent anActionEvent,boolean smallCaml){
@@ -104,7 +113,7 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 	}
 
 	/**
-	 * 将转换结果在小窗口显示出来
+	 * 在小窗口显示内容出来
 	 * @param editor 编辑器
 	 * @param result 结果
 	 */

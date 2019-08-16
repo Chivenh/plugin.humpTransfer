@@ -22,6 +22,7 @@
   <!-- uncomment to enable plugin in all products
   <depends>com.intellij.modules.lang</depends>
   -->
+  <depends>com.intellij.modules.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
@@ -32,9 +33,12 @@
     <!-- 自定义分组 -->
     <group text="HumpTransfer" id="com.fhtiger.plugins.humpTransfer" popup="true" description="Transfer selection to `hump` or `underline`">
       <!-- 将自定义分组归类到已经有分组 -->
+      <!--顶部Edit分组-->
       <add-to-group group-id="EditMenu" anchor="last"/>
-
-      <add-to-group group-id="EditorContextBarMenu" anchor="last"/>
+      <!--顶部Code分组-->
+      <add-to-group group-id="CodeMenu" anchor="last"/>
+      <!--重定义Refactor按钮分组-->
+      <add-to-group group-id="RefactoringMenu" anchor="last"/>
       <!-- 操作按钮 -->
       <action id="com.fhtiger.plugins.humptransfer.Code2HumpAction" class="com.fhtiger.plugins.humptransfer.Code2HumpAction" text="Transfer2Hump" description="Transfer selection to `hump` " >
         <!-- 简写 -->
