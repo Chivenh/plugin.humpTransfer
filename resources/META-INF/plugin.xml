@@ -1,15 +1,14 @@
 <idea-plugin>
   <id>com.fhtiger.plugins.humpTransfer</id>
   <name>HumpTransfer</name>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
   <vendor email="guishizuiezhishi@163.com" url="https://github.com/ghostFlyTiger/plugin.humpTransfer">GhostFlyTiger</vendor>
   <description><![CDATA[
-      Transfer code to `hump` like.<br>
+      Transfer the code to a hump form or underline.<br>
       <em>Also make reverse</em>
     ]]></description>
-
   <change-notes><![CDATA[
-      plugin published the first version 0.0.1 <br>
+      plugin published the first version 0.1.0 <br>
       <em>First version</em>
     ]]>
   </change-notes>
