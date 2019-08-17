@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.fhtiger.plugins.humpTransfer</id>
   <name>HumpTransfer</name>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <vendor email="guishizuiezhishi@163.com" url="https://github.com/ghostFlyTiger/plugin.humpTransfer">GhostFlyTiger</vendor>
   <description><![CDATA[
       Transfer the code to a hump form or underline.<br>
@@ -10,6 +10,13 @@
   <change-notes><![CDATA[
       plugin published the first version 0.1.0 <br>
       <em>First version</em>
+      <hr/>
+      <p><b>version</b>: 0.1.1</p>
+      <b>Since</b> <i> 2019/8/17 16:51 </i>
+      <ul>
+      <li>1.修复在转换过程中会丢失字符的问题</li>
+      <li>2.现在所有的转换操作支持批量转换</li>
+    </ul>
     ]]>
   </change-notes>
 

@@ -6,7 +6,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.command.CommandProcessor;
-import com.intellij.openapi.command.WriteCommandAction;
 import com.intellij.openapi.editor.Caret;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -22,7 +21,11 @@ import java.awt.*;
 
 /**
  * Code2HumpWithReverse
- *
+ * <i> 2019/8/17 16:51 </i>
+ * <ul>
+ *     <li>1.修复在转换过程中会丢失字符的问题</li>
+ *     <li>2.现在所有的转换操作支持批量转换</li>
+ * </ul>
  * @author LFH
  * @since 2019年08月15日 16:42
  */
@@ -51,6 +54,7 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 	}
 
 	/**
+	 * 修改为支持批量转换的操作 2019/8/17 14:11
 	 * @param anActionEvent 事件
 	 * @param toHump 是否转驼峰,非则转下划线
 	 * @param smallCaml    转驼峰时smallCaml参数
@@ -67,7 +71,21 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 			return;
 		}
 
-		final String resultText = toHump?  HumpTransferUtil.transfer2hump(selectedText,smallCaml): HumpTransferUtil.transfer2underline(selectedText,uppercase);
+		String splitRegex = "(\\s+|,|;)";
+
+		String[] splitStr = selectedText.split(splitRegex);
+
+		String result;
+
+		if(splitStr.length>0){
+			result = selectedText;
+			for (String str : splitStr) {
+				result = result.replace(str, toHump?  HumpTransferUtil.transfer2hump(str,smallCaml): HumpTransferUtil.transfer2underline(str,uppercase));
+			}
+		}else{
+			result = toHump?  HumpTransferUtil.transfer2hump(selectedText,smallCaml): HumpTransferUtil.transfer2underline(selectedText,uppercase);
+		}
+
 
 		// Work off of the primary caret to get the selection info
 		Caret primaryCaret = mEditor.getCaretModel().getPrimaryCaret();
@@ -84,6 +102,7 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 		);*/
 
 		/*使用CommandProcessor.getInstance().executeCommand(),在修改操作后注册Undo及Redo,其中HumpTransfer就是undo和redo后显示的操作名*/
+		final String resultText = result;
 		ApplicationManager.getApplication().runWriteAction(()->{
 			CommandProcessor.getInstance().executeCommand(theProject, ()->{
 				document.replaceString(start, end, resultText);

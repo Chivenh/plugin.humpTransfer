@@ -10,3 +10,13 @@
     - 将驼峰字符串转换成下划线字符串形式
 - Transfer2UnderLine-UpperCase
     - 将驼峰字符串转换成下划线字符串形式,强制转大写
+    ---
+# Change Notes
+ <p><b>version</b>: 0.1.1</p>
+ <b>Since</b> <i> 2019/8/17 16:51 </i>
+ 
+### Description
+  <ul>
+      <li>1.修复在转换过程中会丢失字符的问题</li>
+      <li>2.现在所有的转换操作支持批量转换</li>
+  </ul>
