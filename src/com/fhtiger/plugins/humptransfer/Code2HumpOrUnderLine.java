@@ -71,7 +71,7 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 			return;
 		}
 
-		String splitRegex = "(\\s+|,|;)";
+		String splitRegex = "(\\s+|,|;|/)";
 
 		String[] splitStr = selectedText.split(splitRegex);
 

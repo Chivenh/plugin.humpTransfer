@@ -14,10 +14,15 @@ import java.util.regex.Pattern;
 public final class HumpTransferUtil {
 
 	private static final Pattern UnderLineRegex = Pattern.compile("([A-Za-z\\d]+)(_)?");
-	;
+
 	private static final Pattern HumpRegex = Pattern.compile("[A-Z]([a-z\\d]+)?");
+
+	private static final Pattern FirstCharPattern = Pattern.compile("[a-zA-Z]");
+
 	private static final String UnderLine = "_";
 	private static final String Empty = "";
+
+	private static final String END_CHECK="_([^a-zA-Z\\d])";
 
 	/**
 	 * @param underLineStr 下划线文本
@@ -67,6 +72,7 @@ public final class HumpTransferUtil {
 
 	/**
 	 * &gt;修复非指定格式文本被置空的问题: 2019/8/17 14:10
+	 * &gt;修复转换下划线失败问题: 2019/8/20 18:45
 	 * @param humpStr 驼峰字符串
 	 * @param uppercase 分段首字母大小写
 	 * @return 下划线字符串
@@ -77,7 +83,12 @@ public final class HumpTransferUtil {
 			return humpStr;
 		}
 		char first =humpStr.charAt(0);
-		humpStr = String.valueOf(first).toUpperCase().concat(humpStr.substring(1));
+		Matcher firstMatcher= FirstCharPattern.matcher(humpStr);
+		if (firstMatcher.find()){
+			String word = firstMatcher.group();
+			first = word.charAt(0);
+			humpStr= firstMatcher.replaceFirst(word.toUpperCase());
+		}
 		String result=humpStr;
 		int humpLength = humpStr.length();
 		StringBuilder sb = new StringBuilder();
@@ -97,9 +108,9 @@ public final class HumpTransferUtil {
 			replaced++;
 		}
 		if(replaced<1){
-			result = first+result.substring(1);
+			result = firstMatcher.replaceFirst(first+"");
 		}
-		return result.replaceFirst("_([^_]+)$","$1");
+		return result.replaceFirst(END_CHECK,"$1");
 	}
 
 	/**
