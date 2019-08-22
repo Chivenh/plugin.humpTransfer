@@ -12,6 +12,21 @@
     - 将驼峰字符串转换成下划线字符串形式,强制转大写
     ---
 # Change Notes
+
+## version 0.1.2
+ Fix dangerous bug <br>
+  <em>Sorry to published the above version</em>
+  <p><b>version</b>: 0.1.2</p>
+  <b>Since</b> <i> 2019/8/20 18:45 </i>
+  
+### Description
+
+ <ul>
+  <li>1.修复由于过度处理结尾下划线而导致转换下划线失败问题</li>
+  <li>2.优化转换过程</li>
+</ul>
+
+## version 0.1.1
  <p><b>version</b>: 0.1.1</p>
  <b>Since</b> <i> 2019/8/17 16:51 </i>
  
