@@ -20,19 +20,17 @@ import org.jetbrains.annotations.NotNull;
 import java.awt.*;
 
 /**
- * Code2HumpWithReverse
- * <i> 2019/8/17 16:51 </i>
- * <ul>
- *     <li>1.修复在转换过程中会丢失字符的问题</li>
- *     <li>2.现在所有的转换操作支持批量转换</li>
- * </ul>
+ * Code2HumpOrUnderLine
+ * @version 0.1.3
  * @author LFH
  * @since 2019年08月15日 16:42
  */
 public abstract class Code2HumpOrUnderLine extends AnAction {
 
+	private final static JBColor JBColorDefine = new JBColor(new Color(186, 238, 186), new Color(73, 117, 73));
+
 	/**
-	 * 将选中内容转成驼峰形式
+	 * 事件触发
 	 * @param anActionEvent -
 	 */
 	@Override abstract public void actionPerformed(@NotNull AnActionEvent anActionEvent);
@@ -115,7 +113,8 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 		ApplicationManager.getApplication().runWriteAction(()->{
 			CommandProcessor.getInstance().executeCommand(theProject, ()->{
 				document.replaceString(start, end, resultText);
-			}, "HumpTransfer", ActionGroup.EMPTY_GROUP);
+			}, anActionEvent.getPresentation().getText(), ActionGroup.EMPTY_GROUP);
+			//anActionEvent.getPresentation() 就是当前action对象
 		});
 
 		// De-select the text range that was just replaced
@@ -148,7 +147,7 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 	private void showPopupBalloon(final Editor editor, final String result) {
 		ApplicationManager.getApplication().invokeLater(() -> {
 			JBPopupFactory factory = JBPopupFactory.getInstance();
-			factory.createHtmlTextBalloonBuilder(result, null, new JBColor(new Color(186, 238, 186), new Color(73, 117, 73)), null)
+			factory.createHtmlTextBalloonBuilder(result, null, JBColorDefine, null)
 					.setFadeoutTime(5000)
 					.createBalloon()
 					.show(factory.guessBestPopupLocation(editor), Balloon.Position.below);
