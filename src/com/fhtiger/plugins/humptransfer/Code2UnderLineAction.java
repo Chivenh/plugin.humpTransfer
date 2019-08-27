@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Code2HumpAction
+ * Code2UnderLineAction
  *
  * @author LFH
  * @since 2019年08月15日 17:27
