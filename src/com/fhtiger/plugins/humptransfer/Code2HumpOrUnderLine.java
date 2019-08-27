@@ -76,16 +76,25 @@ public abstract class Code2HumpOrUnderLine extends AnAction {
 		String[] splitStr = selectedText.split(splitRegex);
 
 		String result;
-
+		StringBuilder resultBuilder = new StringBuilder();
+		int strIndex;
 		if(splitStr.length>0){
 			result = selectedText;
 			for (String str : splitStr) {
-				result = result.replace(str, toHump?  HumpTransferUtil.transfer2hump(str,smallCaml): HumpTransferUtil.transfer2underline(str,uppercase));
+				int strLength = str.length();
+				if(strLength<1){
+					continue;
+				}
+				 strIndex = result.indexOf(str);
+				//将result中匹配字符串前面部分和当前部分处理后的结果存入结果字符串构造中
+				resultBuilder.append(result, 0, strIndex).append(toHump?  HumpTransferUtil.transfer2hump(str,smallCaml): HumpTransferUtil.transfer2underline(str,uppercase));
+				//将result中已经存入resultBuilder中的部分移除.
+				result = result.substring(strIndex+str.length());
 			}
+			result = resultBuilder.toString();
 		}else{
 			result = toHump?  HumpTransferUtil.transfer2hump(selectedText,smallCaml): HumpTransferUtil.transfer2underline(selectedText,uppercase);
 		}
-
 
 		// Work off of the primary caret to get the selection info
 		Caret primaryCaret = mEditor.getCaretModel().getPrimaryCaret();

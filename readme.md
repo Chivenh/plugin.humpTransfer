@@ -1,4 +1,4 @@
-# 驼峰格式的辅助转换工具:
+# 驼峰格式的辅助转换工具:[HumpTransfer - Plugin Jetbrains](https://plugins.jetbrains.com/plugin/12882-humptransfer/)
 # 实现将选中下划线格式文本进行驼峰的转换和将选中驼峰格式文本向下划线格式文件的转换. 
 ## 此插件会在Edit,Code以及Refactor三个按钮分组中添加对应按钮组.
 ## HumpTransfer 有下面4个针对性的动作
@@ -12,6 +12,19 @@
     - 将驼峰字符串转换成下划线字符串形式,强制转大写
     ---
 # Change Notes
+
+## version 0.1.3
+ Fix some bugs and optimization codes <br>
+  <em>Now,transfer is more accurate and faster! </em>
+  <p><b>version</b>: 0.1.3</p>
+  <b>Since</b> <i> 2019-08-27 10:05 </i>
+  
+### Description
+
+ <ul>
+  <li>1.修复在转换下划线格式时,如遇前后相同结构的时候,会出现重复转换问题</li>
+  <li>2.优化驼峰和下划线转换方式,极大提高了精度和速度</li>
+</ul>
 
 ## version 0.1.2
  Fix dangerous bug <br>

@@ -40,14 +40,16 @@ public final class HumpTransferUtil {
 	 */
 	public static String transfer2hump(String underLineStr, boolean smallCamel) {
 		Objects.requireNonNull(underLineStr, "字符串参数不能为空!");
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();//中间字符串构造
+		StringBuilder resultBuilder = new StringBuilder();//结果字符串构造
 		String result=underLineStr;
 		Matcher matcher = UnderLineRegex.matcher(underLineStr);
-		int start=0;
+		int start=0,wordIndex;
 		//匹配正则表达式
 		while (matcher.find()) {
 			String word = matcher.group();
-			if(word.length()==underLineStr.length()){
+			int wl = word.length();
+			if(wl==underLineStr.length()){
 				return underLineStr;
 			}
 			//当是true 或者是空的情况
@@ -63,9 +65,17 @@ public final class HumpTransferUtil {
 			} else {
 				sb.append(word.substring(1).toLowerCase());
 			}
-			result = result.replace(word,sb.toString());
+			wordIndex = result.indexOf(word);
+			//将result中匹配字符串前面部分和当前部分处理后的结果存入结果字符串构造中
+			resultBuilder.append(result, 0, wordIndex).append(sb);
+			//将result中已经存入resultBuilder中的部分移除.
+			result = result.substring(wordIndex+wl);
+			//清空中间字符串构造
 			sb.delete(0,sb.length());
 			start++;
+		}
+		if(start>0){
+			result = resultBuilder.append(result).toString();
 		}
 		return result;
 	}
@@ -89,28 +99,37 @@ public final class HumpTransferUtil {
 			first = word.charAt(0);
 			humpStr= firstMatcher.replaceFirst(word.toUpperCase());
 		}
-		String result=humpStr;
+		String result=humpStr;//先暂存原字符串
+		StringBuilder resultBuilder = new StringBuilder();//结果字符串构造
 		int humpLength = humpStr.length();
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();//中间处理字符串构造
 		Matcher matcher = HumpRegex.matcher(humpStr);
 		int replaced=0;
 		while (matcher.find()) {
 			String word = matcher.group();
-			if(word.length()==humpLength){
+			int wl = word.length();
+			if(wl==humpLength){
 				return humpStr;
 			}
 			char ft= word.charAt(0);
 			sb.append(uppercase? Character.toUpperCase(ft):Character.toLowerCase(ft));
 			sb.append(word.substring(1));
 			sb.append(matcher.hitEnd() ?Empty : UnderLine);
-			result = result.replace(word,sb.toString());
+			int wordIndex = result.indexOf(word);
+			//将result中匹配字符串前面部分和当前部分处理后的结果存入结果字符串构造中
+			resultBuilder.append(result, 0, wordIndex).append(sb);
+			//将result中已经存入resultBuilder中的部分移除.
+			result = result.substring(wordIndex+wl);
+			//清空中间字符串构造
 			sb.delete(0,sb.length());
 			replaced++;
 		}
 		if(replaced<1){
 			result = firstMatcher.replaceFirst(first+"");
+		}else{
+			result = resultBuilder.append(result).toString().replaceFirst(END_CHECK,"$1");
 		}
-		return result.replaceFirst(END_CHECK,"$1");
+		return result;
 	}
 
 	/**

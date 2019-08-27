@@ -1,22 +1,22 @@
 <idea-plugin>
   <id>com.fhtiger.plugins.humpTransfer</id>
   <name>HumpTransfer</name>
-  <version>0.1.2</version>
+  <version>0.1.3</version>
   <vendor email="guishizuiezhishi@163.com" url="https://github.com/ghostFlyTiger/plugin.humpTransfer">GhostFlyTiger</vendor>
   <description><![CDATA[
       Transfer the code to a hump form or underline.<br>
       <em>Also make reverse</em>
     ]]></description>
   <change-notes><![CDATA[
-      Fix dangerous bug <br>
-      <em>Sorry to published the above version</em>
-      <hr/>
-      <p><b>version</b>: 0.1.2</p>
-      <b>Since</b> <i> 2019/8/20 18:45 </i>
-      <ul>
-      <li>1.修复由于过度处理结尾下划线而导致转换下划线失败问题</li>
-      <li>2.优化转换过程</li>
-    </ul>
+     Fix some bugs and optimization codes <br>
+      <em>Now,transfer is more accurate and faster! </em>
+      <p><b>version</b>: 0.1.3</p>
+      <b>Since</b> <i> 2019-08-27 10:05 </i>
+
+     <ul>
+      <li>1.修复在转换下划线格式时,如遇前后相同结构的时候,会出现重复转换问题</li>
+      <li>2.优化驼峰和下划线转换方式,极大提高了精度和速度</li>
+      </ul>
     ]]>
   </change-notes>
 
