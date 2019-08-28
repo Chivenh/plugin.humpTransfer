@@ -1,21 +1,20 @@
 <idea-plugin>
   <id>com.fhtiger.plugins.humpTransfer</id>
   <name>HumpTransfer</name>
-  <version>0.1.3</version>
+  <version>0.1.4</version>
   <vendor email="guishizuiezhishi@163.com" url="https://github.com/ghostFlyTiger/plugin.humpTransfer">GhostFlyTiger</vendor>
   <description><![CDATA[
       Transfer the code to a hump form or underline.<br>
       <em>Also make reverse</em>
     ]]></description>
   <change-notes><![CDATA[
-     Fix some bugs and optimization codes <br>
-      <em>Now,transfer is more accurate and faster! </em>
-      <p><b>version</b>: 0.1.3</p>
+      Fix the bug and optimization docs. <br>
+      <em>Fix the bug which will make the first char UPPERCASE when transfer a single LOWERCASE word to underline form.</em>
+      <p><b>version</b>: 0.1.4</p>
       <b>Since</b> <i> 2019-08-27 10:05 </i>
 
-     <ul>
-      <li>1.修复在转换下划线格式时,如遇前后相同结构的时候,会出现重复转换问题</li>
-      <li>2.优化驼峰和下划线转换方式,极大提高了精度和速度</li>
+      <ul>
+          <li>修复原全部为小写字母的单个词语在转换时出现首字母被大写转换问题</li>
       </ul>
     ]]>
   </change-notes>

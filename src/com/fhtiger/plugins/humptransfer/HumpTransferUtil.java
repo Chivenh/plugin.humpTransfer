@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 /**
  * HumpTransferUtil
- * 驼峰命名转换
+ * 驼峰命名与下划线命名互相转换
  *
  * @author LFH
  * @since 2019年03月08日 09:59
@@ -83,6 +83,8 @@ public final class HumpTransferUtil {
 	/**
 	 * &gt;修复非指定格式文本被置空的问题: 2019/8/17 14:10
 	 * &gt;修复转换下划线失败问题: 2019/8/20 18:45
+	 * &gt;修复在转换下划线格式时,如遇前后相同结构的时候,会出现重复转换问题 2019-08-27 10:05
+	 * &gt;修复原全部为小写字母的单个词语在转换时出现首字母被大写转换问题 2019-08-28 9:01
 	 * @param humpStr 驼峰字符串
 	 * @param uppercase 分段首字母大小写
 	 * @return 下划线字符串
@@ -109,7 +111,8 @@ public final class HumpTransferUtil {
 			String word = matcher.group();
 			int wl = word.length();
 			if(wl==humpLength){
-				return humpStr;
+				//两者长度相等,则意味着当前匹配的有且只有一个,就是其本身,此时无须转换,退出转换循环,交由下面的还原判断返回结果.
+				break;
 			}
 			char ft= word.charAt(0);
 			sb.append(uppercase? Character.toUpperCase(ft):Character.toLowerCase(ft));
@@ -125,6 +128,7 @@ public final class HumpTransferUtil {
 			replaced++;
 		}
 		if(replaced<1){
+			//没有发生任何转换,将首字母还原,返回原始字符串.
 			result = firstMatcher.replaceFirst(first+"");
 		}else{
 			result = resultBuilder.append(result).toString().replaceFirst(END_CHECK,"$1");

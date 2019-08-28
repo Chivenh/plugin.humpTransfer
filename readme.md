@@ -13,6 +13,16 @@
     ---
 # Change Notes
 
+## version 0.1.4
+ Fix the bug and optimization docs.<br>
+  <em>Fix the bug which will make the first char UPPERCASE when transfer a single LOWERCASE word to underline form.</em>
+  <p><b>version</b>: 0.1.4</p>
+  <b>Since</b> <i> 2019-08-27 10:05 </i>
+## Description
+  <ul>
+      <li>修复原全部为小写字母的单个词语在转换时出现首字母被大写转换问题</li>
+  </ul>
+
 ## version 0.1.3
  Fix some bugs and optimization codes <br>
   <em>Now,transfer is more accurate and faster! </em>
